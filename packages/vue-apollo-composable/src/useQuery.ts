@@ -4,7 +4,6 @@ import {
   isRef,
   computed,
   watch,
-  // @ts-expect-error No implemented on Vue 3 yet, see https://github.com/vuejs/vue-next/pull/3070
   onServerPrefetch,
   getCurrentInstance,
   onBeforeUnmount,
@@ -145,7 +144,7 @@ export function useQueryImpl<
 
   const documentRef = paramToRef(document)
   const variablesRef = paramToRef(variables)
-  const optionsRef = paramToReactive(options)
+  const optionsRef = paramToReactive(options as Record<string, unknown>)
 
   // Result
   /**

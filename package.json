@@ -17,7 +17,7 @@
     "@vue/eslint-config-standard": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "core-js": "^3.4.1",
-    "esbuild": "^0.8.44",
+    "esbuild": "^0.11.0",
     "esbuild-node-externals": "^1.0.2",
     "eslint": "^7.19.0",
     "eslint-plugin-import": "^2.22.1",
@@ -30,7 +30,6 @@
   },
   "resolutions": {
     "eslint-scope": "^5.0.0",
-    "subscriptions-transport-ws": "0.9.18",
-    "graphql": "15.3.0"
+    "subscriptions-transport-ws": "0.9.18"
   }
 }

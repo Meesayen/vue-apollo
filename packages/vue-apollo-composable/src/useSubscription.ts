@@ -115,7 +115,7 @@ export function useSubscription <
 
   const documentRef = paramToRef(document)
   const variablesRef = paramToRef(variables)
-  const optionsRef = paramToReactive(options)
+  const optionsRef = paramToReactive(options as Record<string, unknown>)
 
   const result = ref<TResult | null | undefined>()
   const resultEvent = useEventHook<FetchResult<TResult>>()
