@@ -1,6 +1,6 @@
 {
-  "name": "@meesayen/apollo-hooks",
-  "version": "1.0.0",
+  "name": "@meesayen/apollo-composable",
+  "version": "4.0.0-alpha.12",
   "description": "Apollo GraphQL for Vue Composition API",
   "repository": {
     "type": "git",
