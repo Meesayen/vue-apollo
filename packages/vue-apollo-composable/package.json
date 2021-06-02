@@ -4,7 +4,7 @@
   "description": "Apollo GraphQL for Vue Composition API",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Akryum/vue-apollo.git"
+    "url": "git+https://github.com/meesayen/vue-apollo.git"
   },
   "keywords": [
     "vue",
@@ -15,9 +15,9 @@
   "author": "Guillaume Chau <guillaume.b.chau@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Akryum/vue-apollo/issues"
+    "url": "https://github.com/meesayen/vue-apollo/issues"
   },
-  "homepage": "https://github.com/Akryum/vue-apollo#readme",
+  "homepage": "https://github.com/meesayen/vue-apollo#readme",
   "publishConfig": {
     "access": "public"
   },
