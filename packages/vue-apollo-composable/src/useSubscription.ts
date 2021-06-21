@@ -131,6 +131,11 @@ export function useSubscription <
   const subscription: Ref<Observable<FetchResult<TResult>> | null> = ref(null)
   let observer: ObservableSubscription | null = null
   let started = false
+  let restarting = false
+  let debouncedRestart: typeof baseRestart
+  let currentDocument: DocumentNode
+  let currentVariables: TVariables | undefined
+  let currentVariablesSerialized: string
 
   function start () {
     if (started || !isEnabled.value || isServer) return
@@ -179,7 +184,6 @@ export function useSubscription <
   }
 
   // Restart
-  let restarting = false
   /**
    * Queue a restart of the query (on next tick) if it is already active
    */
@@ -196,7 +200,6 @@ export function useSubscription <
     })
   }
 
-  let debouncedRestart: typeof baseRestart
   function updateRestartFn () {
     if (currentOptions.value?.throttle) {
       debouncedRestart = throttle(currentOptions.value.throttle, baseRestart)
@@ -229,7 +232,6 @@ export function useSubscription <
   })
 
   // Applying document
-  let currentDocument: DocumentNode
   watch(documentRef, value => {
     currentDocument = value
     restart()
@@ -238,8 +240,6 @@ export function useSubscription <
   })
 
   // Applying variables
-  let currentVariables: TVariables | undefined
-  let currentVariablesSerialized: string
   watch(variablesRef, (value, oldValue) => {
     const serialized = JSON.stringify(value)
     if (serialized !== currentVariablesSerialized) {

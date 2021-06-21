@@ -157,6 +157,13 @@ export function useQueryImpl<
 
   let debouncedRestart: typeof baseRestart
   let isRestartDebounceSetup = false
+  let observer: ObservableSubscription | undefined
+  let started = false
+  let onStopHandlers: Array<() => void> = []
+  let restarting = false
+  let currentDocument: DocumentNode
+  let currentVariables: TVariables | undefined
+  let currentVariablesSerialized: string
 
   // Applying options
   const currentOptions = ref<UseQueryOptions<TResult, TVariables>>()
@@ -209,8 +216,6 @@ export function useQueryImpl<
   // Query
 
   const query: Ref<ObservableQuery<TResult, TVariables> | null | undefined> = ref()
-  let observer: ObservableSubscription | undefined
-  let started = false
 
   /**
    * Starts watching the query
@@ -322,8 +327,6 @@ export function useQueryImpl<
     Object.assign(query.value, { lastError, lastResult })
   }
 
-  let onStopHandlers: Array<() => void> = []
-
   /**
    * Stop watching the query
    */
@@ -348,7 +351,6 @@ export function useQueryImpl<
   }
 
   // Restart
-  let restarting = false
   /**
    * Queue a restart of the query (on next tick) if it is already active
    */
@@ -388,7 +390,6 @@ export function useQueryImpl<
   }
 
   // Applying document
-  let currentDocument: DocumentNode
   watch(documentRef, value => {
     currentDocument = value
     restart()
@@ -397,8 +398,6 @@ export function useQueryImpl<
   })
 
   // Applying variables
-  let currentVariables: TVariables | undefined
-  let currentVariablesSerialized: string
   watch(variablesRef, (value, oldValue) => {
     const serialized = JSON.stringify(value)
     if (serialized !== currentVariablesSerialized) {
