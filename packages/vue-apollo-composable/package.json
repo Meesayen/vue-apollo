@@ -30,8 +30,8 @@
   "scripts": {
     "dev": "tsc -d -w --sourceMap",
     "build": "rimraf dist && node esbuild.mjs && tsc -d --emitDeclarationOnly",
-    "prepublishOnly": "yarn test && yarn build",
-    "test": "yarn test:types",
+    "prepublishOnly": "npm run test && npm run build",
+    "test": "npm run test:types",
     "test:types": "tsc -p tests/types/"
   },
   "dependencies": {
