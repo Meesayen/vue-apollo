@@ -1,8 +1,9 @@
 import esbuild from 'esbuild'
 import path from 'path'
-import { nodeExternalsPlugin } from 'esbuild-node-externals'
+import pkg from 'esbuild-node-externals'
+const { nodeExternalsPlugin } = pkg
 
-(async () => {
+;(async () => {
   const builds = [
     { format: 'esm', file: 'index.esm.js' },
     { format: 'cjs', file: 'index.js' },
@@ -15,9 +16,7 @@ import { nodeExternalsPlugin } from 'esbuild-node-externals'
       format,
       outfile: path.join('dist', file),
       sourcemap: true,
-      plugins: [
-        nodeExternalsPlugin(),
-      ],
+      plugins: [nodeExternalsPlugin()],
     })
   }
 })()

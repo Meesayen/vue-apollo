@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "tsc -d -w --sourceMap",
     "build": "rimraf dist && node esbuild.mjs && tsc -d --emitDeclarationOnly",
-    "prepublishOnly": "npm run test && npm run build",
+    "prepublishOnly": "npm run build",
     "test": "npm run test:types",
     "test:types": "tsc -p tests/types/"
   },
@@ -43,8 +43,26 @@
     "vue": "^3.1.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.0.0",
+    "@apollo/client": "^3.2.1",
+    "@types/babel__core": "^7.1.14",
+    "@types/babel__template": "^7.4.0",
     "@types/throttle-debounce": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "@vue/eslint-config-standard": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "core-js": "^3.4.1",
+    "esbuild": "^0.11.0",
+    "esbuild-node-externals": "^1.0.2",
+    "eslint": "^7.19.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "graphql": "^15.5.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.4",
     "vue": "^3.1.0"
   }
 }

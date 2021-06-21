@@ -155,6 +155,9 @@ export function useQueryImpl<
   const error = ref<Error | null>(null)
   const errorEvent = useEventHook<Error>()
 
+  let debouncedRestart: typeof baseRestart
+  let isRestartDebounceSetup = false
+
   // Applying options
   const currentOptions = ref<UseQueryOptions<TResult, TVariables>>()
   watch(() => isRef(optionsRef) ? optionsRef.value : optionsRef, value => {
@@ -362,8 +365,6 @@ export function useQueryImpl<
     })
   }
 
-  let debouncedRestart: typeof baseRestart
-  let isRestartDebounceSetup = false
   function updateRestartFn () {
     // On server, will be called before currentOptions is initialized
     // @TODO investigate
