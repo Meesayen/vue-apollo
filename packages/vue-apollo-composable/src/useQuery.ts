@@ -8,7 +8,7 @@ import {
   getCurrentInstance,
   onBeforeUnmount,
   nextTick,
-} from 'vue-demi'
+} from 'vue'
 import { DocumentNode } from 'graphql'
 import {
   OperationVariables,
@@ -154,6 +154,22 @@ export function useQueryImpl<
   const resultEvent = useEventHook<ApolloQueryResult<TResult>>()
   const error = ref<Error | null>(null)
   const errorEvent = useEventHook<Error>()
+
+  // Applying options
+  const currentOptions = ref<UseQueryOptions<TResult, TVariables>>()
+  watch(() => isRef(optionsRef) ? optionsRef.value : optionsRef, value => {
+    if (currentOptions.value && (
+      currentOptions.value.throttle !== value.throttle ||
+      currentOptions.value.debounce !== value.debounce
+    )) {
+      updateRestartFn()
+    }
+    currentOptions.value = value
+    restart()
+  }, {
+    deep: true,
+    immediate: true,
+  })
 
   // Loading
 
@@ -389,22 +405,6 @@ export function useQueryImpl<
       restart()
     }
     currentVariablesSerialized = serialized
-  }, {
-    deep: true,
-    immediate: true,
-  })
-
-  // Applying options
-  const currentOptions = ref<UseQueryOptions<TResult, TVariables>>()
-  watch(() => isRef(optionsRef) ? optionsRef.value : optionsRef, value => {
-    if (currentOptions.value && (
-      currentOptions.value.throttle !== value.throttle ||
-      currentOptions.value.debounce !== value.debounce
-    )) {
-      updateRestartFn()
-    }
-    currentOptions.value = value
-    restart()
   }, {
     deep: true,
     immediate: true,

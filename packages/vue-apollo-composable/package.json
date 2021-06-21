@@ -1,6 +1,6 @@
 {
-  "name": "@meesayen/apollo-composable",
-  "version": "4.0.0-alpha.12",
+  "name": "@meesayen/apollo-hooks",
+  "version": "4.0.0-alpha.13",
   "description": "Apollo GraphQL for Vue Composition API",
   "repository": {
     "type": "git",
@@ -35,18 +35,16 @@
     "test:types": "tsc -p tests/types/"
   },
   "dependencies": {
-    "throttle-debounce": "^2.3.0",
-    "vue-demi": "^0.4.0"
+    "throttle-debounce": "^2.3.0"
   },
   "peerDependencies": {
     "@apollo/client": "^3.2.1",
-    "@vue/composition-api": "^1.0.0-beta.16",
-    "graphql": "^14.5.8",
-    "vue": "^2.6.10"
+    "graphql": "^15.5.0",
+    "vue": "^3.1.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.0.0",
     "@types/throttle-debounce": "^2.1.0",
-    "@vue/composition-api": "^1.0.0-beta.16"
+    "vue": "^3.1.0"
   }
 }

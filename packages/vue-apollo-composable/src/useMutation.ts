@@ -1,6 +1,6 @@
 import { DocumentNode } from 'graphql'
 import { MutationOptions, OperationVariables, FetchResult, TypedDocumentNode } from '@apollo/client/core'
-import { ref, onBeforeUnmount, isRef, Ref } from 'vue-demi'
+import { ref, onBeforeUnmount, isRef, Ref } from 'vue'
 import { useApolloClient } from './useApolloClient'
 import { ReactiveFunction } from './util/ReactiveFunction'
 import { useEventHook } from './util/useEventHook'
@@ -91,7 +91,7 @@ export function useMutation<
       loading.value = false
       doneEvent.trigger(result)
       return result
-    } catch (e) {
+    } catch (e: any) {
       error.value = e
       loading.value = false
       errorEvent.trigger(e)

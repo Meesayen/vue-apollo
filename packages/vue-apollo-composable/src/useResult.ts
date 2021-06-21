@@ -1,4 +1,4 @@
-import { Ref, computed } from 'vue-demi'
+import { Ref, computed } from 'vue'
 import { ExtractSingleKey } from './util/ExtractSingleKey'
 
 export type UseResultReturn<T> = Readonly<Ref<Readonly<T>>>
